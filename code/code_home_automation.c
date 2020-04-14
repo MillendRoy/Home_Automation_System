@@ -1,7 +1,11 @@
 #include<reg52.h> 
 #include<stdio.h>
-sbit b=P0^0; #sbit datatype allows you to access a specific pin within a port. Any changes to b or c will be reflected in the respective pins 0 and 1 of Port 0 that will change the state of the relays 1 and 2 respectively.
+
+sbit b=P0^0; // globally assigned variables 
 sbit c=P0^1;
+// sbit datatype allows you to access a specific pin within a port.
+// Any changes to b or c will be reflected in the respective pins 0 and 1 of Port 0 that will change the state of the relays 1 and 2 respectively.
+
 unsigned int a; # used to store the value of the bits in the serial buffer register.
 void receive()
 {
@@ -18,7 +22,9 @@ void main()
 	P0=0X00; // Initialize the pins of port 0 to 0, so all the relays are not working now
 	while(1) //infinte loop we need it to run continually
 	{
-		receive(); //call the receive function. So the variable a is storing the value of the bits in the SBUF register. The bluetooth app transmits ASCII values of a, A , b B based on which option you select and you are switching on or switching off a device.
+		receive(); //call the receive function. 
+		// So the variable a is storing the value of the bits in the SBUF register. 
+	        // The bluetooth app transmits ASCII values of a, A , b, B based on which option you select and you are switching on or switching off a device.
 		if(a=='a') 
 		{
 			b=0; // Relay 1 is off
